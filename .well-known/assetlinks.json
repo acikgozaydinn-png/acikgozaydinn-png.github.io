@@ -1,0 +1,33 @@
+[
+  
+  {
+    
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    
+    "target": {
+      
+      "namespace": "android_app",
+      
+      "package_name": "com.aydinyatirimnoktasi.altinhesap",
+      
+      "sha256_cert_fingerprints": [
+        
+        "14:4D:F2:74:32:C4:2A:DA:45:5F:94:21:9F:1D:2B:84:45:B4:6B:E3:1A:48:52:90:7A:58:7C:FB:96:D8:DA:00"
+        
+      ]
+      
+    }
+    
+  }
+  
+]
+
+
+
+
+
+
+
+
+
+
