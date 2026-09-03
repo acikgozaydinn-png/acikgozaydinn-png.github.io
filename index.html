@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Altın ve gümüş ons fiyatı ile USD/TL kurundan gram TL karşılığını hesaplayın.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+  <title>Altın & Gümüş Hesaplama</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08111f;--card:#111d31;--line:#263b59;--gold:#f4c95d;--silver:#c9d4e3;--text:#f7f9fc;--muted:#a9b8cc;--accent:#48c8e8}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#08111f,#14233a);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text);min-height:100vh}
+    main{max-width:720px;margin:0 auto;padding:20px 16px 38px}.brand{display:flex;gap:12px;align-items:center;padding:10px 0 20px}.brand img{width:52px;height:52px}.brand h1{font-size:1.35rem;line-height:1.15;margin:0}.brand p{margin:4px 0 0;color:var(--muted);font-size:.88rem}
+    .card{background:rgba(17,29,49,.94);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 50px rgba(0,0,0,.24);margin-bottom:14px}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}.tab{border:1px solid var(--line);background:#172741;color:var(--text);border-radius:12px;padding:12px;font-weight:700;cursor:pointer}.tab.active{background:linear-gradient(135deg,#7f5c18,#d7a936);color:#16110a;border-color:var(--gold)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;color:var(--muted);font-size:.8rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.04em}.field input{width:100%;font:inherit;color:var(--text);background:#0b1627;border:1px solid #385172;border-radius:10px;padding:12px;outline:none}.field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(72,200,232,.15)}
+    .hero{margin-top:16px;text-align:center;background:linear-gradient(135deg,#1e4c5f,#162a49);border-radius:14px;padding:18px}.hero small{color:#bcebf5}.hero strong{display:block;color:#fff;font-size:2.2rem;margin-top:4px}.hero span{color:var(--muted);font-size:.82rem}.section-title{font-weight:800;margin:18px 0 10px;color:var(--gold)}.results{display:grid;grid-template-columns:1fr 1fr;gap:9px}.result{background:#0b1627;border:1px solid #223b5c;border-radius:11px;padding:12px}.result span{display:block;color:var(--muted);font-size:.78rem}.result strong{display:block;font-size:1.08rem;margin-top:4px}.notice{color:var(--muted);font-size:.8rem;line-height:1.5}.ad-slot{min-height:90px;border:1px dashed #385172;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#7085a2;font-size:.76rem;margin:14px 0}.links{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem}.links a{color:var(--accent)}footer{color:#7f91aa;font-size:.75rem;line-height:1.45;text-align:center;padding:12px 0 0}@media(max-width:420px){.grid,.results{grid-template-columns:1fr}.hero strong{font-size:1.9rem}}
+  </style>
+</head>
+<body>
+<main>
+  <header class="brand"><img src="icons/icon-192.svg" alt="YN"><div><h1>Altın & Gümüş Hesaplama</h1><p>Aydın Yatırım Noktası</p></div></header>
+  <section class="card">
+    <div class="tabs"><button class="tab active" id="goldTab" type="button">🥇 ALTIN</button><button class="tab" id="silverTab" type="button">🥈 GÜMÜŞ</button></div>
+    <div class="grid"><div class="field"><label id="metalLabel" for="ons">Ons altın (USD)</label><input id="ons" type="number" inputmode="decimal" value="4746" min="0" step="0.01"></div><div class="field"><label for="rate">USD/TL kuru</label><input id="rate" type="number" inputmode="decimal" value="38.5" min="0" step="0.0001"></div></div>
+    <div class="hero"><small>Hesaplanan gram TL değeri</small><strong id="gram">—</strong><span id="formula">Ons × kur ÷ 31,1035</span></div>
+    <div id="goldResults"><div class="section-title">Altın karşılıkları</div><div class="results"><div class="result"><span>Çeyrek altın</span><strong id="quarter">—</strong></div><div class="result"><span>Yarım altın</span><strong id="half">—</strong></div><div class="result"><span>Tam altın (7,2 g)</span><strong id="full">—</strong></div><div class="result"><span>100 gram altın</span><strong id="hundred">—</strong></div></div></div>
+    <div id="silverResults" hidden><div class="section-title">Gümüş karşılıkları</div><div class="results"><div class="result"><span>1 gram gümüş</span><strong id="silverGram">—</strong></div><div class="result"><span>100 gram gümüş</span><strong id="silverHundred">—</strong></div><div class="result"><span>1 kg gümüş</span><strong id="silverKilo">—</strong></div><div class="result"><span>Altın/Gümüş oranı</span><strong id="gsr">—</strong></div></div></div>
+    <div class="ad-slot" aria-label="Reklam alanı">Reklam alanı — AdSense kodunu burada kullanabilirsiniz</div>
+    <p class="notice">Bu araç yalnızca bilgilendirme amaçlıdır ve yatırım tavsiyesi değildir. Sonuçlar alış-satış makası, komisyon, vergi, işçilik, prim, saklama maliyeti ve piyasa likiditesini içermez. Fiyat ve kur manuel girilir; işlem fiyatı olarak yorumlanmamalıdır.</p>
+  </section>
+  <section class="card"><div class="section-title">Hızlı erişim</div><div class="links"><a href="https://www.aydinyatirimnoktasi.com/" rel="noopener">Ana site</a><a href="https://www.aydinyatirimnoktasi.com/p/gizlilik-politikasi.html" rel="noopener">Gizlilik politikası</a><a href="https://www.aydinyatirimnoktasi.com/p/iletisim_30.html" rel="noopener">İletişim</a></div></section>
+  <footer>© Aydın Yatırım Noktası · Veriler manuel güncellenir · Eğitim ve bilgilendirme amaçlıdır</footer>
+</main>
+<script>
+  const $=id=>document.getElementById(id); let mode='gold'; let lastGoldOns=Number($('ons')?.value)||4746;
+  const money=n=>new Intl.NumberFormat('tr-TR',{style:'currency',currency:'TRY',maximumFractionDigits:0}).format(n||0);
+  function calc(){const ons=Number($('ons').value)||0, rate=Number($('rate').value)||0; if(mode==='gold') lastGoldOns=ons; const gram=ons*rate/31.1035; $('gram').textContent=money(gram); if(mode==='gold'){ $('quarter').textContent=money(gram*1.6); $('half').textContent=money(gram*3.2); $('full').textContent=money(gram*7.2); $('hundred').textContent=money(gram*100)}else{$('silverGram').textContent=money(gram);$('silverHundred').textContent=money(gram*100);$('silverKilo').textContent=money(gram*1000);$('gsr').textContent=ons?((lastGoldOns/ons).toFixed(1)+' : 1'):'—'} }
+  function setMode(m){mode=m;$('goldTab').classList.toggle('active',m==='gold');$('silverTab').classList.toggle('active',m==='silver');$('goldResults').hidden=m!=='gold';$('silverResults').hidden=m==='gold';$('metalLabel').textContent=m==='gold'?'Ons altın (USD)':'Ons gümüş (USD)';$('formula').textContent='Ons × kur ÷ 31,1035';calc()}
+  $('goldTab').addEventListener('click',()=>setMode('gold'));$('silverTab').addEventListener('click',()=>setMode('silver'));document.querySelectorAll('input').forEach(x=>x.addEventListener('input',calc));calc();
+  if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js'));
+</script>
+</body></html>
+
